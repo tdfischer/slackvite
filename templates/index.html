@@ -1,0 +1,25 @@
+{% extends 'layout.html'%}
+{% block content %}
+<h1>Join {{SLACK.name}}</h1>
+<p>Before joining {{SLACK.name}}, we have some questions for you:
+<form method='POST'>
+  <label>
+    Email address
+    <input type="text" name="email" required placeholder="yimby@eastbayforward.org">
+  </label>
+  <label>
+    Your name
+    <input type="text" name="name" required>
+  </label>
+  <label>
+    Why do you want to join {{SLACK.name}}?
+    <textarea name="reason" rows="5" required></textarea>
+  </label>
+  {% if CODE_OF_CONDUCT %}
+  <p>{{SLACK.name}} has a <a href="{{CODE_OF_CONDUCT}}">Code of Conduct</a>.
+  <label><input type="checkbox" required>Yes, I have read and agree to the Code of
+    Conduct</label>
+  {% endif %}
+  <input type="submit" class="button">
+</form>
+{% endblock %}

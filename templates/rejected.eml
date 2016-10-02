@@ -1,0 +1,5 @@
+Hi, {{user.name}}.
+
+Your application to join {{SLACK.name}} was rejected.
+
+Sorry!

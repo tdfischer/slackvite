@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h1>Applications</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  {% for app in applications %}
+  <tr>
+    <td>{{app.name}}</td>
+    <td>{{app.email}}</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td colspan=3>
+      {{app.reason}}
+    </td>
+    <td>
+      <form method='POST'>
+        <input type='hidden' name='id' value='{{app.id}}'>
+        <button name='action' value='accept' class="button success">Accept</button>
+        <button name='action' value='reject' class="button alert">Reject</button>
+      </form>
+    </td>
+  {% endfor %}
+</table>
+<h2>Other applications</h2>
+<ul>
+  <li><a href="{{url_for('applications', state='approved-and-emailed')}}">Approved</a></li>
+  <li><a href="{{url_for('applications', state='rejected-and-emailed')}}">Rejected</a></li>
+</ul>
+{% endblock %}

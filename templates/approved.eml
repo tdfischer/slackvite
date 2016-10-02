@@ -1,0 +1,5 @@
+Hi, {{user.name}}.
+
+Your application to join {{SLACK.name}} was approved!
+
+You should be receiving a separate email shortly containing your slack invite.

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join {{SLACK.name}}</title>
+    <link rel="stylesheet" href="/static/css/foundation.css">
+    <link rel="stylesheet" href="/static/css/app.css">
+<style type="text/css">
+<!--
+.side-banner {
+    text-align: center;
+    padding: 1em;
+}
+
+.logo {
+    width: 100%;
+}
+-->
+</style>
+  </head>
+  <body>
+    <div class="row">
+      <div class="large-2 columns side-banner">
+        <img src="{{SLACK.icon.image_132}}" class="logo">
+        {% if current_user.is_authenticated %}
+        <p>Logged in as {{current_user.display_name}}.
+          <p><a href="{{url_for('applications')}}">Pending Applications</a>
+          <p><a href="{{url_for('logout')}}">Logout</a>
+        {% else %}
+<a href="https://slack.com/oauth/authorize?scope=admin&client_id=26946388311.86459271606"><img alt="Sign in with Slack" height="40" width="172" src="https://platform.slack-edge.com/img/sign_in_with_slack.png" srcset="https://platform.slack-edge.com/img/sign_in_with_slack.png 1x, https://platform.slack-edge.com/img/sign_in_with_slack@2x.png 2x" /></a>
+        {% endif %}
+      </div>
+      <div class="columns">
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul>
+              {% for message in messages %}
+                <li>{{message}}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+        {% block content %}
+        {% endblock %}
+      </div>
+    </div>
+  </body>
+</html>
+
